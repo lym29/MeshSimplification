@@ -1,4 +1,5 @@
 # MeshSimplification
+git clone : https://github.com/lym29/MeshSimplification
 
 This is an implementation of the mesh simplification algorithm using quadric error metrics, which is a simple case (Simplification of geometry) in the work of [Hugues Hoppe](http://hhoppe.com/newqem.pdf). A visualization system including simple keyboard interface is also implemented based on OpenGL. It takes about 40 seconds to work on meshes with 2500 vertices.
 
