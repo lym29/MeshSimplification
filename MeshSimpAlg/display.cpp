@@ -250,7 +250,6 @@ void myMouse(int button, int state, int x, int y)
 void onMouseMove(int x, int y) 
 {
 	if (mousetate) {
-		//x对应y是因为对应的是法向量
 		yRotate += x - Oldx;
 		glutPostRedisplay();
 		Oldx = x;
