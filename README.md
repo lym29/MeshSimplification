@@ -47,37 +47,37 @@ Support compiling with **CMake**. Path to external library may need to be modifi
 ### Results
 
 <div align="center">
-    <img src="./results/control_panel.png", width = "500">
+    <img src="./results/control_panel.PNG", width = "500">
     <figcaption> Information displayed by self-defined control panel </figcaption>
 </div>
 
 #### Example 1 : Stanford Bunny
 
 <div align="center">
-    <img src="./results/bunny_before.png", width = "300">
-  	<img src="./results/bunny_before_wire.png", width = "300">
+    <img src="./results/bunny_before.PNG", width = "300">
+  	<img src="./results/bunny_before_wire.PNG", width = "300">
     <figcaption> Original Bunny mesh (2503 vertices); Left : flat mode; Right : wire mode </figcaption>
 </div>
 
   	
 
 <div align="center">
-    <img src="./results/bunny_1000.png", width = "300">
-  	<img src="./results/bunny_1000_wire.png", width = "300">
+    <img src="./results/bunny_1000.PNG", width = "300">
+  	<img src="./results/bunny_1000_wire.PNG", width = "300">
     <figcaption> Simplified Bunny mesh (1000 vertices); Left : flat mode; Right : wire mode </figcaption>
 </div>  
 
 
 
 <div align="center">
-    <img src="./results/bunny_500.png", width = "300">
-  	<img src="./results/bunny_500_wire.png", width = "300">
+    <img src="./results/bunny_500.PNG", width = "300">
+  	<img src="./results/bunny_500_wire.PNG", width = "300">
     <figcaption> Simplified Bunny mesh (500 vertices); Left : flat mode; Right : wire mode </figcaption>
 </div>  
 
 <div align="center">
-    <img src="./results/bunny_250.png", width = "300">
-  	<img src="./results/bunny_250_wire.png", width = "300">
+    <img src="./results/bunny_250.PNG", width = "300">
+  	<img src="./results/bunny_250_wire.PNG", width = "300">
     <figcaption> Simplified Bunny mesh (250 vertices); Left : flat mode; Right : wire mode </figcaption>
 </div>  
 
@@ -86,35 +86,35 @@ Support compiling with **CMake**. Path to external library may need to be modifi
 #### Example 2 : Bunny Head 
 
 <div align="center">
-    <img src="./results/bunnyhead_orig.png", width = "300">
-  	<img src="./results/bunnyhead_orig_wire.png", width = "300">
+    <img src="./results/bunnyhead_orig.PNG", width = "300">
+  	<img src="./results/bunnyhead_orig_wire.PNG", width = "300">
     <figcaption> Original Bunny mesh (741 vertices); Left : flat mode; Right : wire mode </figcaption>
 </div>
 
 <div align="center">
-    <img src="./results/bunnyhead_370.png", width = "300">
-  	<img src="./results/bunnyhead_370_wire.png", width = "300">
+    <img src="./results/bunnyhead_370.PNG", width = "300">
+  	<img src="./results/bunnyhead_370_wire.PNG", width = "300">
     <figcaption> Simplified Bunny mesh (370 vertices); Left : flat mode; Right : wire mode </figcaption>
 </div>
 
 <div align="center">
-    <img src="./results/bunnyhead_135.png", width = "300">
-  	<img src="./results/bunnyhead_135_wire.png", width = "300">
+    <img src="./results/bunnyhead_135.PNG", width = "300">
+  	<img src="./results/bunnyhead_135_wire.PNG", width = "300">
     <figcaption> Simplified Bunny mesh (135 vertices); Left : flat mode; Right : wire mode </figcaption>
 </div>
 
 <div align="center">
-    <img src="./results/bunnyhead_60.png", width = "300">
-  	<img src="./results/bunnyhead_60_wire.png", width = "300">
+    <img src="./results/bunnyhead_60.PNG", width = "300">
+  	<img src="./results/bunnyhead_60_wire.PNG", width = "300">
     <figcaption> Simplified Bunny mesh (741 vertices); Left : flat mode; Right : wire mode </figcaption>
 </div>
 
 #### Example 3 : 3 balls
 
 <div align="center">
-    <img src="./results/ball_orig.png", width = "300">
-  	<img src="./results/ball_270.png", width = "300">
-    <img src="./results/ball_135.png", width = "300">
-    <img src="./results/ball_70.png", width = "300">
+    <img src="./results/ball_orig.PNG", width = "300">
+  	<img src="./results/ball_270.PNG", width = "300">
+    <img src="./results/ball_135.PNG", width = "300">
+    <img src="./results/ball_70.PNG", width = "300">
     <figcaption> UpperLeft: Original 3balls model(547 vertices); UpperRight: Simplified model (270 vertices); LowerLeft: simplified model (135 vertices); LowerRight: simplified model (70 vertices) </figcaption>
 </div>
