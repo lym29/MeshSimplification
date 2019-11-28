@@ -20,8 +20,8 @@ MyMesh orig_mesh;
 MeshSimplification mesh_simp(mesh);
 bool is_drawing_orig = true;
 
-const std::string file_1 = "../meshes/Bunny_head.obj";
-const std::string file_2 = "../meshes/Cat_head.obj";
+const std::string file_1 = "../meshes/Bunny.obj";
+const std::string file_2 = "../meshes/Bunny_head.obj";
 const std::string file_3 = "../meshes/Balls.obj";
 int currentfile = 1;
 
