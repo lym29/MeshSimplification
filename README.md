@@ -1,84 +1,120 @@
 # MeshSimplification
 
-This is an implementation of the classical graph cut algorithm. The calculation of max flow is also implemented by myself, using the Ford Fulkerson algorithm. Although the results obtained are comparable to others, the running time has yet to be optimized. A picture of about 200*200 pixels takes about 1 minutes to calculate, and most of the time is consumed in calculating the max flow. 
+This is an implementation of the mesh simplification algorithm using quadric error metrics, which is a simple case (Simplification of geometry) in the work of [Hugues Hoppe](http://hhoppe.com/newqem.pdf). A visualization system including simple keyboard interface is also implemented based on OpenGL. It takes about 40 seconds to work on meshes with 2500 vertices.
+
+### Implementation Detail
+
+For each face $f$ of the original mesh, a quadric $Q^{f}(\mathbf{v})$ can be defined as the squared distance of a point $v$ to the plane to which $f$ belongs. Suppose $f$ is consisted of three vertices $(\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3)$, this quadric can be written as 
+
+$$Q^{f}(\mathbf{v}) = [\mathbf{n}^T (\mathbf{v} - \mathbf{v}_1)]^2 = \mathbf{v}^{T}\left(\mathbf{n} \mathbf{n}^{T}\right) \mathbf{v}+2 d \mathbf{n}^{T} \mathbf{v}+d^{2}$$
+
+where $\mathbf{n}$ is the face normal of $f$ and $d=-\mathbf{n}^{T} \mathbf{v}_{1}$ .
+
+Each vertex v of the original mesh is assigned the sum of quadrics on its adjacent faces weighted by face area:
+
+$Q^{v}(\mathbf{v})=\sum_{f \ni v} \operatorname{area}(f) \cdot Q^{f}(\mathbf{v})$
+
+After each edge collapse $(v_1, v_2) \rightarrow v$ , the new position of $v$ should minimize the two quadrics related to $v_1$ and $v_2$.  This minimum can be easily obtained by solving the linear system: $\nabla Q^{\nu}(\mathbf{v}) = 0$
+
+ By iterating over all edges of original mesh, we can select the edge that leads to the lowest minimum as the next edge for collapse.
 
 ### Usage 
 
-In the GraphCut folder, there is an executable file, through it, you can run the program directly (require OpenCV DLL file in your system path).
+**Keyboard Interface**
 
-In the source code folder, there is a .txt file named "img_name.txt". Type the name of image you want to test and save the file. Run the program.
+* **F1** : read file "../meshes/Bunny.obj"
+* **F2** : read file "../meshes/Bunny_head.obj"
+* **F3** : read file "../meshes/Balls.obj"
+* **F4** : select display mode, switch among "flat", "wire" and "flat-wire"
+* **SHIFT** : start to simplify current mesh, enter the target number of vertices as prompted by the console
+* **F5** : choose which mesh to show, switch between original mesh (read from file) and current mesh
 
-After the 'Display Window' is showed, press the left mouse button to draw object labels ( they should be blue lines), press both 'ALT' key and the left button to draw background labels (green lines).
+**Mouse Interface**
 
-If you have finished the labeling job, please press the space key to run the graph cut algorithm.  
-
-When new windows pops up, the graph cut is completed. Press "s" to store the output images.  
-
-Press 'Esc' key to exit the program.
-
-**IMPORTANT:** Please use release mode !
+* Wheel Up/Down : Zoom Out/In
+* Left Mouse : camera rotation
 
 ### Compile
 
-**IDE**: Visual Studio 2019
+**IDE**: Visual Studio 2017
 
-**3rd party library required:**  OpenCV 4.1.1
+**3rd party library required:** OpenGL, [Eigen3.3.7](http://eigen.tuxfamily.org/index.php?title=Main_Page), [freeglut 3.2.1](http://freeglut.sourceforge.net/index.php#download), [OpenMesh 8.0](https://www.openmesh.org/download/)
+
+(OpenMesh is complied from source code, only OpenMeshCore and OpenMeshTools need to be installed)
+
+Support compiling with **CMake**. Path to external library may need to be modified in CMakeList.
 
 ### Results
 
-<figure class="half">     
-      <img src="./GraphCut/images/carsten.jpg">     
-      <img src="./GraphCut/images/carsten_drawed.jpg"> 
-</figure>  
+<div align="center">
+    <img src="./results/control_panel.png", width = "500">
+    <figcaption> Information displayed by self-defined control panel </figcaption>
+</div>
 
-<figure class="half">     
-      <img src="./GraphCut/images/carsten_out.jpg">     
-      <img src="./GraphCut/images/carsten_mask.jpg"> 
-</figure>  
+#### Example 1 : Stanford Bunny
 
+<div align="center">
+    <img src="./results/bunny_before.png", width = "300">
+  	<img src="./results/bunny_before_wire.png", width = "300">
+    <figcaption> Original Bunny mesh (2503 vertices); Left : flat mode; Right : wire mode </figcaption>
+</div>
 
+  	
 
-<figure class="half">     
-      <img src="./GraphCut/images/hat.jpg">     
-      <img src="./GraphCut/images/hat_drawed.jpg"> 
-</figure>  
-
-<figure class="half">     
-      <img src="./GraphCut/images/hat_out.jpg">     
-      <img src="./GraphCut/images/hat_mask.jpg"> 
-</figure>  
-
-
-
-<figure class="half">     
-      <img src="./GraphCut/images/tree.jpg">     
-      <img src="./GraphCut/images/tree_drawed.jpg"> 
-</figure>  
-
-<figure class="half">     
-      <img src="./GraphCut/images/tree_out.jpg">     
-      <img src="./GraphCut/images/tree_mask.jpg"> 
-</figure>  
+<div align="center">
+    <img src="./results/bunny_1000.png", width = "300">
+  	<img src="./results/bunny_1000_wire.png", width = "300">
+    <figcaption> Simplified Bunny mesh (1000 vertices); Left : flat mode; Right : wire mode </figcaption>
+</div>  
 
 
 
-<figure class="half">     
-      <img src="./GraphCut/images/horse.jpg">     
-      <img src="./GraphCut/images/horse_drawed.jpg"> 
-</figure> 
+<div align="center">
+    <img src="./results/bunny_500.png", width = "300">
+  	<img src="./results/bunny_500_wire.png", width = "300">
+    <figcaption> Simplified Bunny mesh (500 vertices); Left : flat mode; Right : wire mode </figcaption>
+</div>  
 
-<figure class="half">     
-      <img src="./GraphCut/images/horse_out.jpg">     
-      <img src="./GraphCut/images/horse_mask.jpg"> 
-</figure> 
+<div align="center">
+    <img src="./results/bunny_250.png", width = "300">
+  	<img src="./results/bunny_250_wire.png", width = "300">
+    <figcaption> Simplified Bunny mesh (250 vertices); Left : flat mode; Right : wire mode </figcaption>
+</div>  
 
-<figure class="half">     
-      <img src="./GraphCut/images/owls.jpg">     
-      <img src="./GraphCut/images/owls_drawed.jpg"> 
-</figure> 
 
-<figure class="half">     
-      <img src="./GraphCut/images/owls_out.jpg">     
-      <img src="./GraphCut/images/owls_mask.jpg"> 
-</figure> 
 
+#### Example 2 : Bunny Head 
+
+<div align="center">
+    <img src="./results/bunnyhead_orig.png", width = "300">
+  	<img src="./results/bunnyhead_orig_wire.png", width = "300">
+    <figcaption> Original Bunny mesh (741 vertices); Left : flat mode; Right : wire mode </figcaption>
+</div>
+
+<div align="center">
+    <img src="./results/bunnyhead_370.png", width = "300">
+  	<img src="./results/bunnyhead_370_wire.png", width = "300">
+    <figcaption> Simplified Bunny mesh (370 vertices); Left : flat mode; Right : wire mode </figcaption>
+</div>
+
+<div align="center">
+    <img src="./results/bunnyhead_135.png", width = "300">
+  	<img src="./results/bunnyhead_135_wire.png", width = "300">
+    <figcaption> Simplified Bunny mesh (135 vertices); Left : flat mode; Right : wire mode </figcaption>
+</div>
+
+<div align="center">
+    <img src="./results/bunnyhead_60.png", width = "300">
+  	<img src="./results/bunnyhead_60_wire.png", width = "300">
+    <figcaption> Simplified Bunny mesh (741 vertices); Left : flat mode; Right : wire mode </figcaption>
+</div>
+
+#### Example 3 : 3 balls
+
+<div align="center">
+    <img src="./results/ball_orig.png", width = "300">
+  	<img src="./results/ball_270.png", width = "300">
+    <img src="./results/ball_135.png", width = "300">
+    <img src="./results/ball_70.png", width = "300">
+    <figcaption> UpperLeft: Original 3balls model(547 vertices); UpperRight: Simplified model (270 vertices); LowerLeft: simplified model (135 vertices); LowerRight: simplified model (70 vertices) </figcaption>
+</div>

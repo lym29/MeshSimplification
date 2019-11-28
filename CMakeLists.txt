@@ -10,7 +10,10 @@ set(OUTPUT_RELEASE /Release/)
 # Folders files
 set(PROJECT_DIR ./MeshSimpAlg/)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} C:/OpenMesh-8.0/OpenMesh-8.0/cmake/)
+set(FreeGLUT_DIR "./freegl/lib/cmake/FreeGLUT/")
+set(FreeGLUT_INCLUDE_DIR "./freegl/include/")
 message(STATUS ${CMAKE_MODULE_PATH})
+
 ###############################
 find_package(Eigen3 3.3 REQUIRED NO_MODULE)
 if(EIGEN3_FOUND)
@@ -20,8 +23,6 @@ else()
 	message(STATUS "NOTICE: Eigen library is not found.") 
 endif()
 
-set(FreeGLUT_DIR "./freegl/lib/cmake/FreeGLUT/")
-set(FreeGLUT_INCLUDE_DIR "./freegl/include/")
 find_package(FreeGLUT REQUIRED)
 if(FreeGLUT_FOUND)
 	include_directories(${FreeGLUT_INCLUDE_DIR})
